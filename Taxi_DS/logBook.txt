@@ -1,0 +1,31 @@
+Execution Log:
+
+1 3 1 
+1 1 1 
+1 2 1 
+
+check map
+A: 3 2   1 3
+B: 1 1   1 2
+2: 1 1   2 2
+C: 2 3   2 1
+
+Execution Log:
+
+[0] Taxi fetch Passenger B
+[0] Taxi fetch Passenger 2
+[1] Taxi move east
+[1] Taxi drop Passenger B
+[4] Taxi move south
+[4] Taxi drop Passenger 2
+[5] Taxi move south
+[5] Taxi fetch Passenger A
+[7] Taxi move north
+[8] Taxi move east
+[8] Taxi fetch Passenger C
+[9] Taxi move north
+[9] Taxi drop Passenger A
+[10] Taxi move south
+[11] Taxi move west
+[12] Taxi move west
+[12] Taxi drop Passenger C

@@ -1,0 +1,144 @@
+1 3 1 1 1 
+3 3 2 1 1 
+3 1 3 1 1 
+2 1 2 1 1 
+1 1 1 1 1 
+
+Execution Log:
+
+[1] Taxi move east
+[1] Taxi fetch Passenger A
+[4] Taxi move south
+[4] Taxi fetch Passenger E
+[7] Taxi move south
+[7] Taxi fetch Passenger B
+[8] Taxi move south
+[8] Taxi drop Passenger E
+[9] Taxi move south
+[9] Taxi drop Passenger B
+[10] Taxi move north
+[11] Taxi move east
+[13] Taxi move east
+[13] Taxi drop Passenger A
+[14] Taxi move north
+[15] Taxi move north
+[16] Taxi move east
+[16] Taxi fetch Passenger C
+[17] Taxi move north
+[17] Taxi drop Passenger C
+[18] Taxi move south
+[19] Taxi move west
+[20] Taxi move west
+[20] Taxi fetch Passenger D
+[22] Taxi move east
+[23] Taxi move south
+[24] Taxi move east
+[24] Taxi drop Passenger D
+
+
+
+1 2 2 1 1 
+2 2 3 2 3 
+1 2 2 2 1 
+2 1 1 1 1 
+1 2 1 2 1 
+
+Execution Log:
+
+[1] Taxi move south
+[3] Taxi move south
+[4] Taxi move south
+[6] Taxi move south
+[6] Taxi fetch Passenger B
+[7] Taxi move north
+[9] Taxi move east
+[10] Taxi move east
+[10] Taxi fetch Passenger A
+[11] Taxi move east
+[12] Taxi move north
+[12] Taxi fetch Passenger C
+[12] Taxi fetch Passenger D
+[14] Taxi move east
+[14] Taxi drop Passenger B
+[15] Taxi move west
+[15] Taxi fetch Passenger E
+[17] Taxi move south
+[18] Taxi move east
+[18] Taxi drop Passenger A
+[19] Taxi move south
+[19] Taxi drop Passenger D
+[20] Taxi move north
+[21] Taxi move north
+[22] Taxi move west
+[24] Taxi move north
+[26] Taxi move north
+[27] Taxi move west
+[27] Taxi drop Passenger E
+[29] Taxi move west
+[31] Taxi move south
+[31] Taxi drop Passenger C
+
+
+
+2 1 1 1 1 
+1 1 1 1 1 
+1 1 1 1 1 
+1 1 1 3 1 
+1 1 1 1 1 
+
+Execution Log:
+
+[2] Taxi move south
+[2] Taxi fetch Passenger B
+[3] Taxi move south
+[3] Taxi fetch Passenger A
+[4] Taxi move south
+[4] Taxi fetch Passenger C
+[5] Taxi move east
+[6] Taxi move east
+[6] Taxi drop Passenger C
+[6] Taxi fetch Passenger D
+[7] Taxi move south
+[7] Taxi drop Passenger D
+[8] Taxi move east
+[8] Taxi fetch Passenger E
+[9] Taxi move east
+[10] Taxi move north
+[11] Taxi move north
+[12] Taxi move north
+[12] Taxi drop Passenger E
+[13] Taxi move west
+[13] Taxi drop Passenger A
+[14] Taxi move west
+[15] Taxi move west
+[15] Taxi drop Passenger B
+
+
+
+1 1 2 
+1 2 1 
+1 1 1 
+
+Execution Log:
+
+[1] Taxi move south
+[2] Taxi move south
+[2] Taxi fetch Passenger A
+[2] Taxi fetch Passenger B
+[3] Taxi move north
+[4] Taxi move east
+[4] Taxi drop Passenger B
+[4] Taxi fetch Passenger C
+[6] Taxi move east
+[6] Taxi drop Passenger A
+[6] Taxi fetch Passenger E
+[7] Taxi move north
+[7] Taxi fetch Passenger D
+[9] Taxi move west
+[9] Taxi drop Passenger D
+[10] Taxi move south
+[12] Taxi move south
+[12] Taxi drop Passenger C
+[13] Taxi move west
+[13] Taxi drop Passenger E
+
