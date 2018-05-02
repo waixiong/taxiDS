@@ -51,7 +51,7 @@ public class mapAndTaxi extends JComponent{
     
     public mapAndTaxi(JPanel panel, MapArea[][] map, Taxi[] taxiHolder){
         this.panel=panel;
-        int size = map.length;
+        int size = map.length-2;
         this.map= map;
         setBounds(0,0,panel.getWidth(),panel.getHeight());
         if(size == 3) pngFile = "images/3.png";
