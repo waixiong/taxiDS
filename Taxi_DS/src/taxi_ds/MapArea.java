@@ -13,11 +13,12 @@ import java.util.*;
  */
 public class MapArea {
     int cost = 1;//may change
-    final int X; final int Y; //coordinate
+    public final int X; public final int Y; //coordinate
     MapArea north = null;
     MapArea south = null;
     MapArea east = null;
     MapArea west = null;
+    public ArrayList<Passenger> list = new ArrayList<>();
     
     //ArrayList<Passenger> passengers = new ArrayList<>();
     
@@ -135,13 +136,27 @@ public class MapArea {
         return time;
     }
     
-    public String directionTo(MapArea des){
-        if(this.distanceWith(des)==1){
-            if(des == this.north) return "N";
-            else if(des == this.south) return "S";
-            else if(des == this.east) return "E";
-            else if(des == this.west) return "W";
+    public String directionTo(MapArea next){
+        if(this.distanceWith(next)==1){
+            if(next == this.north) return "N";
+            else if(next == this.south) return "S";
+            else if(next == this.east) return "E";
+            else if(next == this.west) return "W";
         }
         return "Not Connected";
+    }
+    
+    public boolean trafficEvent(){
+        boolean change = false;
+        Random r = new Random();
+        int rand = r.nextInt(100)+1;
+        if(rand < 2 + (this.cost*this.cost-1)){
+            if(cost != 1)this.cost--;
+            change = true;
+        }else if(rand > 99){
+            if(cost != 4)this.cost++;
+            change = true;
+        }
+        return change;
     }
 }

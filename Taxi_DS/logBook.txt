@@ -1,21 +1,72 @@
 Execution Log:
 
-2 1 2 1 
-1 1 3 1 
-2 1 1 3 
-1 1 2 1 
+1 2 1 2 1 
+1 2 1 1 3 
+1 1 3 1 2 
+1 1 1 1 2 
+1 1 2 1 1 
 
 check map
-A: 1 1   2 1
-B: 2 3   3 3
+A: 1 5   3 1
+B: 5 4   3 5
 
 Execution Log:
 
-[0] Taxi fetch Passenger A
-[2] Taxi move south
-[2] Taxi drop Passenger A
+[1] Taxi move east
 [3] Taxi move east
 [4] Taxi move east
-[4] Taxi fetch Passenger B
-[7] Taxi move south
-[7] Taxi drop Passenger B
+[6] Taxi move east
+[6] Taxi fetch Passenger A
+[7] Taxi move west
+[9] Taxi move south
+[10] Taxi move west
+[10] Taxi fetch Passenger D
+[11] Taxi move west
+[12] Taxi move south
+[13] Taxi move west
+[13] Taxi drop Passenger A
+[14] Taxi move south
+[15] Taxi move east
+[15] Taxi drop Passenger D
+[16] Taxi move north
+[17] Taxi move east
+[18] Taxi move north
+[18] Taxi fetch Passenger E
+[19] Taxi move south
+[19] Taxi drop Passenger E
+[20] Taxi move east
+[21] Taxi move south
+[22] Taxi move south
+[22] Taxi fetch Passenger B
+[22] Taxi fetch Passenger C
+[23] Taxi move north
+[23] Taxi fetch Passenger I
+[25] Taxi move west
+[25] Taxi fetch Passenger J
+[28] Taxi move north
+[29] Taxi move north
+[29] Taxi drop Passenger C
+[29] Taxi fetch Passenger G
+[31] Taxi move west
+[31] Taxi drop Passenger G
+[32] Taxi move west
+[32] Taxi fetch Passenger H
+[33] Taxi move north
+[34] Taxi move east
+[34] Taxi drop Passenger I
+[36] Taxi move south
+[37] Taxi move south
+[38] Taxi move south
+[38] Taxi drop Passenger H
+[39] Taxi move south
+[39] Taxi fetch Passenger F
+[40] Taxi move west
+[40] Taxi drop Passenger F
+[42] Taxi move north
+[43] Taxi move east
+[44] Taxi move north
+[45] Taxi move east
+[46] Taxi move east
+[46] Taxi drop Passenger J
+[47] Taxi move east
+[47] Taxi drop Passenger B

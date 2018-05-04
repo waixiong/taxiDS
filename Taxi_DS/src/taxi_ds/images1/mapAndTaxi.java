@@ -44,12 +44,12 @@ public class mapAndTaxi extends JComponent{
     private static int counter=0;
     private static ImageIcon backgroundImg;
     private static String pngFile;//Add;png for map with its respective size
-    private Taxi[] taxiHolder;//holdTaxiAddress
+    private Taxi taxiHolder;//holdTaxiAddress
     public static MapArea taxiLocation =  new MapArea(100, 100, 1);//Add
     private static final int time = 120;//Add just time constant
-    private static MapArea[][] map;
+    private MapArea[][] map;
     
-    public mapAndTaxi(JPanel panel, MapArea[][] map, Taxi[] taxiHolder){
+    public mapAndTaxi(JPanel panel, MapArea[][] map, Taxi taxiHolder){
         this.panel=panel;
         int size = map.length-2;
         this.map= map;
@@ -70,22 +70,48 @@ public class mapAndTaxi extends JComponent{
 
     public void paint(Graphics g){
         super.paintComponent(g);
-        g.drawImage(backgroundImg.getImage(), 0, 0, this);
+        g.drawImage(backgroundImg.getImage(), 100, 0, this);
         for(int i = 1; i < map.length-1; i++)
             for(int j = 1; j < map[i].length-1; j++){
                 if(map[i][j].getCost() == 2){
                     g.setColor(new Color(0xCCCC00));
-                    g.fillRoundRect((j-1)*64+1, (i-1)*64+1, 62, 62, 2, 2);
+                    g.fillRoundRect((j-1)*64+102, (i-1)*64+2, 60, 60, 2, 2);
                 }else if(map[i][j].getCost() == 3){
                     g.setColor(new Color(0xCC6600));
-                    g.fillRoundRect((j-1)*64+1, (i-1)*64+1, 62, 62, 2, 2);
+                    g.fillRoundRect((j-1)*64+102, (i-1)*64+2, 60, 60, 2, 2);
                 }else if(map[i][j].getCost() == 4){
                     g.setColor(new Color(0xCC0000));
-                    g.fillRoundRect((j-1)*64+1, (i-1)*64+1, 62, 62, 2, 2);
+                    g.fillRoundRect((j-1)*64+102, (i-1)*64+2, 60, 60, 2, 2);
                 }
             }
+        g.setColor(white);
+        g.fillRect(10, 0, 50, (int)(210*this.taxiHolder.getAvailableSpace()/this.taxiHolder.space));
+        g.setColor(new Color(0xFFFF00));
+        g.fillRect(10, (int)(210*this.taxiHolder.getAvailableSpace()/this.taxiHolder.space), 50, (int)(210*(this.taxiHolder.space-this.taxiHolder.getAvailableSpace())/this.taxiHolder.space));
+        //people source
+        g.setColor(new Color(0X5500ff));
+        for(int i = 1; i < map.length-1; i++){
+            //Passenger temp = taxiHolder.booking.get(i);
+            //g.fillRect(102+(temp.initial.Y-1)*64, (temp.initial.X-1)*64+2, 10, 10*temp.people);
+            for(int j = 1; j < map.length-1; j++){
+                for(int p = 0; p < map[i][j].list.size(); p++)
+                    g.fillRect((102+(j-1)*64)+10*p, (i-1)*64+2, 10, 10*map[i][j].list.get(p).people);
+            }
+        }
+        //destination
+        g.setColor(new Color(0xff0000));
+        for(int i = 0; i < taxiHolder.contains.size(); i++){
+            Passenger temp = taxiHolder.contains.get(i);
+            g.fillRect(152+(temp.destination.Y-1)*64, (temp.destination.X-1)*64+52, 10, 10);
+        }
+        //show the GPS road
+        g.setColor(new Color(0x00ff00));
+        for(int i = 0; i < taxiHolder.GPS.size(); i++){
+            MapArea temp = taxiHolder.GPS.get(i);
+            g.fillRect(127+(temp.Y-1)*64, (temp.X-1)*64+27, 10, 10);
+        }
         ImageIcon image2=new ImageIcon(new ImageIcon(getClass().getResource("images/1.png")).getImage());
-        g.drawImage(image2.getImage(), row,column, 64, 64, null);
+        g.drawImage(image2.getImage(), 100+row,column, 64, 64, null);
     }
     
     
@@ -183,6 +209,15 @@ private Timer timer4=new Timer(taxiLocation.getCost()*120,new ActionListener() {
     
     //Add
     private void updateLocation(){
-        this.taxiLocation = this.taxiHolder[0].getCurrentPosition();
+        this.taxiLocation = this.taxiHolder.getCurrentPosition();
+    }
+    
+    public boolean trafficEvent(){
+        boolean change = false;
+        for(int i = 1; i < map.length-1; i++)
+            for(int j = 1; j < map.length-1; j++)
+                change = map[i][j].trafficEvent() || change;
+        repaint();
+        return change;
     }
 }
