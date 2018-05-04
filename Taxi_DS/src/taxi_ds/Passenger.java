@@ -10,11 +10,12 @@ package taxi_ds;
  * @author TheChee
  */
 public class Passenger {
-    MapArea initial;
-    MapArea destination;
+    public MapArea initial;
+    public MapArea destination;
     String label;
     int wTime;//waiting
     int rTime;//riding
+    public int people;
     
     public Passenger(String label, MapArea initial, MapArea destination){
         this.label = label;
@@ -22,9 +23,27 @@ public class Passenger {
         this.destination = destination;
         this.wTime = 0;
         this.rTime = 0;
+        this.people = 1;
+    }
+    
+    public Passenger(String label, MapArea initial, MapArea destination, int people){
+        this.label = label;
+        this.initial = initial;
+        this.destination = destination;
+        this.wTime = 0;
+        this.rTime = 0;
+        this.people = people;
+    }
+    
+    public void addToMap(){
+        this.initial.list.add(this);
+    }
+    
+    public void removeFromMap(){
+        this.initial.list.remove(this);
     }
     
     public String message(){
-        return "Passenger "+label+" wait for "+wTime+" minutes, ride for "+rTime+" minutes";
+        return "Passenger("+people+") "+label+" wait for "+wTime+" minutes, ride for "+rTime+" minutes";
     }
 }

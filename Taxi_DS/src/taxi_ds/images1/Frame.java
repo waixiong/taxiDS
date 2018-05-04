@@ -20,7 +20,7 @@ public class Frame extends javax.swing.JFrame {
     mapAndTaxi image;//Add
     
     //Add
-    public Frame(MapArea[][] map, Taxi[] taxiHolder) {
+    public Frame(MapArea[][] map, Taxi taxiHolder) {
         initComponents();
         image = new mapAndTaxi(panel, map, taxiHolder);
         panel.add(image);
@@ -45,11 +45,11 @@ public class Frame extends javax.swing.JFrame {
 
         jButton4 = new javax.swing.JButton();
         penelWithBackground = new javax.swing.JPanel();
-        panel = new javax.swing.JPanel();
-        downButton = new javax.swing.JButton();
-        leftButton = new javax.swing.JButton();
-        rightButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        rightButton = new javax.swing.JButton();
+        leftButton = new javax.swing.JButton();
+        downButton = new javax.swing.JButton();
+        panel = new javax.swing.JPanel();
 
         jButton4.setText("jButton4");
 
@@ -63,6 +63,34 @@ public class Frame extends javax.swing.JFrame {
             penelWithBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 500, Short.MAX_VALUE)
         );
+
+        jButton1.setText("Up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        rightButton.setText("Right");
+        rightButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rightButtonActionPerformed(evt);
+            }
+        });
+
+        leftButton.setText("Left");
+        leftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                leftButtonActionPerformed(evt);
+            }
+        });
+
+        downButton.setText("Down");
+        downButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downButtonActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -84,59 +112,16 @@ public class Frame extends javax.swing.JFrame {
             .addGap(0, 500, Short.MAX_VALUE)
         );
 
-        downButton.setText("Down");
-        downButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                downButtonActionPerformed(evt);
-            }
-        });
-
-        leftButton.setText("Left");
-        leftButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                leftButtonActionPerformed(evt);
-            }
-        });
-
-        rightButton.setText("Right");
-        rightButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rightButtonActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Up");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(downButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(leftButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(rightButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(downButton)
-                    .addComponent(leftButton)
-                    .addComponent(rightButton)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(32, 32, 32)
                 .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE))
         );
 

@@ -6,29 +6,32 @@
 package taxi_ds;
 import java.util.*;
 import java.io.*;
-import taxi_ds.images1.mapAndTaxi;
+import taxi_ds.images1.*;
 /**
  *
  * @author TheChee
  */
 public class Taxi {
-    final int space = 4;//4 or 6
+    public final int space = 4;//4 or 6
     //final int maxFuel = (int)Math.pow(2, 30);//infinite for now
     private int availableSpace = space;
     private MapArea currentPosition;
-    ArrayList<Passenger> booking;//passenger sources
-    ArrayList<Passenger> contains; //people in taxi
-    ArrayList<MapArea> GPS;
+    public ArrayList<Passenger> booking;//passenger sources
+    public ArrayList<Passenger> contains; //people in taxi
+    public ArrayList<MapArea> GPS;
     int time;
     PrintWriter write;//log book
-    private mapAndTaxi image;
+    private Frame[] image;
+    boolean envChange = false;
+    ArrayList<Passenger> dynamicPassenger;
     
-    public Taxi(MapArea currentPosition, mapAndTaxi image){
+    public Taxi(MapArea currentPosition, Frame[] image, ArrayList<Passenger> dynamicPassenger){
         this.currentPosition = currentPosition;
         this.booking = new ArrayList<>();
         this.contains = new ArrayList<>();
         this.GPS = new ArrayList<>();
         time = 0;
+        this.dynamicPassenger = dynamicPassenger;
         this.image = image;
         try{
             write = new PrintWriter(new File("logBook.txt"));
@@ -36,6 +39,10 @@ public class Taxi {
         }catch(IOException io){
             System.out.println("logBook has some error!!!");
         }
+    }
+    
+    public int getAvailableSpace(){
+        return this.availableSpace;
     }
     
     public void closeLog(){
@@ -50,7 +57,7 @@ public class Taxi {
         if(this.currentPosition.north != null){
             //
             updateTime(this.currentPosition.getCost());
-            image.moveNorth();
+            image[0].getImage().moveNorth();
             Thread.sleep(this.currentPosition.cost * 1000);
             this.currentPosition = this.currentPosition.north;
             //Taxi move north
@@ -62,7 +69,7 @@ public class Taxi {
     public void moveSouth() throws InterruptedException{
         if(this.currentPosition.south != null){
             updateTime(this.currentPosition.getCost());
-            image.moveSouth();
+            image[0].getImage().moveSouth();
             Thread.sleep(this.currentPosition.cost * 1000);
             this.currentPosition = this.currentPosition.south;
             //Taxi move south
@@ -73,7 +80,7 @@ public class Taxi {
     public void moveEast() throws InterruptedException{
         if(this.currentPosition.east != null){
             updateTime(this.currentPosition.getCost());
-            image.moveEast();
+            image[0].getImage().moveEast();
             Thread.sleep(this.currentPosition.cost * 1000);
             this.currentPosition = this.currentPosition.east;
             //Taxi move east
@@ -84,7 +91,7 @@ public class Taxi {
     public void moveWest() throws InterruptedException{
         if(this.currentPosition.west != null){
             updateTime(this.currentPosition.getCost());
-            image.moveWest();
+            image[0].getImage().moveWest();
             Thread.sleep(this.currentPosition.cost * 1000);
             this.currentPosition = this.currentPosition.west;
             //Taxi move west
@@ -105,9 +112,11 @@ public class Taxi {
             }
             if(exist && this.availableSpace != 0){
                 Passenger f = this.booking.remove(i);
+                f.removeFromMap();
                 this.contains.add(f);
-                this.availableSpace--;
+                this.availableSpace-=f.people;
                 write.printf("[%d] Taxi fetch Passenger %s\n", time, f.label);
+                System.out.printf("[%d] Taxi fetch Passenger %s, %d people\n", time, f.label, f.people);
             }
         }
     }
@@ -123,7 +132,7 @@ public class Taxi {
         }
         if(exist){
             Passenger d = this.contains.remove(i);
-            this.availableSpace++;
+            this.availableSpace+=d.people;
             write.printf("[%d] Taxi drop Passenger %s\n", time, d.label);
             System.out.println(d.message());
         }
@@ -190,10 +199,11 @@ public class Taxi {
 //        collectionPath.add(initial);
 //        getPathAlgo(collectionPath);
         ArrayList<GoalNode> goalList = new ArrayList<>();
-        if(this.availableSpace != 0)
+        if(this.availableSpace > 0)
         for(int i = 0; i < booking.size(); i++){
             MapArea g = booking.get(i).initial;
-            goalList.add(new GoalNode(g, this.currentPosition.timeWith(g)));
+            if(this.availableSpace >= booking.get(i).people)
+                goalList.add(new GoalNode(g, this.currentPosition.timeWith(g)));
         }//add source goal
         for(int i = 0; i < contains.size(); i++){
             MapArea g = contains.get(i).destination;
@@ -206,12 +216,20 @@ public class Taxi {
             }
             
         });
+//        GoalNode min = goalList.get(0);
+//        for(int i = 1; i < goalList.size(); i++)
+//            if(goalList.get(i).time < min.time)
+//                min = goalList.get(i);
         getPathAlgo(goalList.get(0).goal);
     }
     
     public void moveToGoal() throws InterruptedException{
         while(GPS.size() > 0){
-            MapArea next = GPS.remove(0);
+            if(image[0].getImage().trafficEvent() || this.dynamicCustomer()){
+                this.envChange = true;
+                break;
+            }
+            MapArea next = GPS.get(0);
             String d = this.currentPosition.directionTo(next);
             //Thread.sleep(this.currentPosition.cost * 1000);
             if(d.equals("N"))
@@ -222,6 +240,13 @@ public class Taxi {
                 this.moveEast();
             else if(d.equals("W"))
                 this.moveWest();
+            GPS.remove(0);
+        }
+        if(this.envChange){
+            GPS.clear();
+            this.envChange = false;
+            this.getPath();
+            this.moveToGoal();
         }
     }
     
@@ -233,5 +258,24 @@ public class Taxi {
         for(int i = 0; i < contains.size(); i++){
             contains.get(i).rTime+=time;
         }
+    }
+    
+    public boolean dynamicCustomer(){
+        Random r = new Random();
+        boolean change = false;
+        if(r.nextInt(100)>70 && !this.dynamicPassenger.isEmpty()){
+            change = true;
+            Passenger c = this.dynamicPassenger.remove(0);
+            this.booking.add(c);
+            c.addToMap();
+        }
+        return change;
+    }
+    
+    public void rest() throws InterruptedException{
+        this.updateTime(1);
+        write.printf("[%d] Taxi rest and wait for order\n", time);
+        System.out.printf("[%d] Taxi rest and wait for order\n", time);
+        Thread.sleep(1000);
     }
 }
