@@ -4,7 +4,14 @@
  * and open the template in the editor.
  */
 package taxi_ds;
+import java.io.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javafx.geometry.Side;
+import javafx.scene.chart.*;
+
 import taxi_ds.images1.*;
 /**
  *
@@ -103,33 +110,19 @@ public class Taxi_DS {
             }
         }
         
-        System.out.println("");
-        System.out.println("");
-        System.out.println("Map");
         for(int i = 1; i < map.length-1; i++){
             for(int j = 1; j < map[i].length-1; j++){
                 System.out.print(map[i][j].cost + " ");
-                taxi.write.print(map[i][j].cost + " ");
             }
             System.out.println("");
-            taxi.write.println("");
         }
         
         f.setAlwaysOnTop(true);
         f.setVisible(true);//show Frame
         
-        taxi.write.println("\ncheck map");
-        //checking start//
-        for(int i = 0; i < taxi.booking.size(); i++){
-            MapArea ini = taxi.booking.get(i).initial;
-            MapArea des = taxi.booking.get(i).destination;
-            taxi.write.println(taxi.booking.get(i).label+": "+ini.X+" "+ini.Y+"   "+des.X+" "+des.Y);
-        }
-        //checking finish//
         
         System.out.println("");
         System.out.println("RESULT");
-        taxi.write.println("\nExecution Log:\n");
         while(taxi.booking.size() != 0 || taxi.contains.size() != 0 || !dynamicC.isEmpty()){
             boolean taskExist = false;
             while(taxi.booking.size() != 0 || taxi.contains.size() != 0){
@@ -151,15 +144,22 @@ public class Taxi_DS {
             }
             if(!taskExist){
                 taxi.rest();
-                taxi.dynamicCustomer();
+                //taxi.dynamicCustomer();
             }
         }
         
         taxi.getCurrentPosition().printPosition();
-            System.out.println(taxi.time);
+        System.out.println(taxi.time);
         
-            System.out.println(taxi);
-            taxi.closeLog();
+        System.out.println(taxi);
+        taxi.closeLog();
+//        try{
+//            Process p = Runtime.getRuntime().exec("python3 graph.py");
+//            
+//        }catch(Exception e){
+//            System.out.println("Python compiler has some error!!!");
+//        }
+        //SChart c = new SChart();
     }
     
     public static int getSize(){
@@ -168,6 +168,13 @@ public class Taxi_DS {
         int size;
         try{
             size = in.nextInt();
+            if(size > 6){
+                System.out.println("Max size is 6 so the size is set to 6");
+                return 6;
+            }else if(size<3){
+                System.out.println("Min size is 3 so the size is set to 3");
+                return 3;
+            }
             return size;
         }catch(Exception e){
             System.out.println("Is Integer, Please reenter: ");
@@ -181,6 +188,10 @@ public class Taxi_DS {
         int size;
         try{
             size = in.nextInt();
+            if(size > 26){
+                System.out.println("Max is 26 so the number of passenger label is 26");
+                return 26;
+            }
             return size;
         }catch(Exception e){
             System.out.println("Is Integer, Please reenter: ");
@@ -196,4 +207,6 @@ public class Taxi_DS {
 //            c.addToMap();
 //        }
 //    }
+    
+    
 }

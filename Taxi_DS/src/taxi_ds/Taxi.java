@@ -21,6 +21,7 @@ public class Taxi {
     public ArrayList<MapArea> GPS;
     int time;
     PrintWriter write;//log book
+    PrintWriter cusRe;//customerReport
     private Frame[] image;
     boolean envChange = false;
     ArrayList<Passenger> dynamicPassenger;
@@ -39,6 +40,12 @@ public class Taxi {
         }catch(IOException io){
             System.out.println("logBook has some error!!!");
         }
+        try{
+            cusRe = new PrintWriter(new File("Passenger.csv"));
+            cusRe.println("Label,WaitingTime,RidingTime,Time leave taxi");
+        }catch(IOException io){
+            System.out.println("logBook has some error!!!");
+        }
     }
     
     public int getAvailableSpace(){
@@ -47,6 +54,7 @@ public class Taxi {
     
     public void closeLog(){
         write.close();
+        cusRe.close();
     }
     
     public MapArea getCurrentPosition(){
@@ -134,6 +142,7 @@ public class Taxi {
             Passenger d = this.contains.remove(i);
             this.availableSpace+=d.people;
             write.printf("[%d] Taxi drop Passenger %s\n", time, d.label);
+            cusRe.printf("%s,%d,%d,%d\n", d.label, d.wTime, d.rTime, time);
             System.out.println(d.message());
         }
         
@@ -225,7 +234,7 @@ public class Taxi {
     
     public void moveToGoal() throws InterruptedException{
         while(GPS.size() > 0){
-            if(image[0].getImage().trafficEvent() || this.dynamicCustomer()){
+            if(image[0].getImage().trafficEvent() || this.dynamicCustomer() || this.envChange){
                 this.envChange = true;
                 break;
             }
@@ -277,5 +286,6 @@ public class Taxi {
         write.printf("[%d] Taxi rest and wait for order\n", time);
         System.out.printf("[%d] Taxi rest and wait for order\n", time);
         Thread.sleep(1000);
+        this.envChange = image[0].getImage().trafficEvent() || this.dynamicCustomer();
     }
 }

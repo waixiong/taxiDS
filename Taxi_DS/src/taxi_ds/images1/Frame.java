@@ -25,6 +25,7 @@ public class Frame extends javax.swing.JFrame {
         image = new mapAndTaxi(panel, map, taxiHolder);
         panel.add(image);
         System.out.println("Frame ready");
+        this.setTitle("Taxi Simulator");
     }
     
     public Frame() {

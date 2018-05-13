@@ -98,18 +98,26 @@ public class mapAndTaxi extends JComponent{
                     g.fillRect((102+(j-1)*64)+10*p, (i-1)*64+2, 10, 10*map[i][j].list.get(p).people);
             }
         }
+        g.fillRect(10, 400, 10, 10);
         //destination
         g.setColor(new Color(0xff0000));
         for(int i = 0; i < taxiHolder.contains.size(); i++){
             Passenger temp = taxiHolder.contains.get(i);
             g.fillRect(152+(temp.destination.Y-1)*64, (temp.destination.X-1)*64+52, 10, 10);
         }
+        g.fillRect(140, 400, 10, 10);
         //show the GPS road
         g.setColor(new Color(0x00ff00));
         for(int i = 0; i < taxiHolder.GPS.size(); i++){
             MapArea temp = taxiHolder.GPS.get(i);
             g.fillRect(127+(temp.Y-1)*64, (temp.X-1)*64+27, 10, 10);
         }
+        g.fillRect(270, 400, 10, 10);
+        g.setColor(Color.BLACK);
+        g.setFont(new Font("Monospaced", Font.PLAIN, 14));
+        g.drawString("Source", 22, 411);
+        g.drawString("Destination", 152, 411);
+        g.drawString("GPS", 282, 411);
         ImageIcon image2=new ImageIcon(new ImageIcon(getClass().getResource("images/1.png")).getImage());
         g.drawImage(image2.getImage(), 100+row,column, 64, 64, null);
     }

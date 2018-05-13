@@ -1,72 +1,152 @@
 Execution Log:
 
-1 2 1 2 1 
-1 2 1 1 3 
-1 1 3 1 2 
-1 1 1 1 2 
-1 1 2 1 1 
-
-check map
-A: 1 5   3 1
-B: 5 4   3 5
-
-Execution Log:
-
 [1] Taxi move east
+[2] Taxi move east
+[2] Taxi fetch Passenger C
 [3] Taxi move east
 [4] Taxi move east
-[6] Taxi move east
-[6] Taxi fetch Passenger A
-[7] Taxi move west
-[9] Taxi move south
+[4] Taxi fetch Passenger B
+[5] Taxi move east
+[5] Taxi fetch Passenger E
+[6] Taxi move west
+[7] Taxi move south
+[8] Taxi move west
+[9] Taxi move west
+[9] Taxi drop Passenger B
+[9] Taxi fetch Passenger F
 [10] Taxi move west
-[10] Taxi fetch Passenger D
-[11] Taxi move west
-[12] Taxi move south
+[10] Taxi drop Passenger E
+[11] Taxi move east
+[12] Taxi move east
+[12] Taxi drop Passenger F
 [13] Taxi move west
-[13] Taxi drop Passenger A
-[14] Taxi move south
-[15] Taxi move east
-[15] Taxi drop Passenger D
-[16] Taxi move north
-[17] Taxi move east
-[18] Taxi move north
-[18] Taxi fetch Passenger E
+[15] Taxi move south
+[16] Taxi move west
+[16] Taxi fetch Passenger L
+[17] Taxi move west
+[17] Taxi fetch Passenger J
 [19] Taxi move south
-[19] Taxi drop Passenger E
+[19] Taxi fetch Passenger G
 [20] Taxi move east
-[21] Taxi move south
+[21] Taxi move east
+[21] Taxi drop Passenger G
 [22] Taxi move south
-[22] Taxi fetch Passenger B
-[22] Taxi fetch Passenger C
-[23] Taxi move north
-[23] Taxi fetch Passenger I
-[25] Taxi move west
-[25] Taxi fetch Passenger J
+[22] Taxi drop Passenger C
+[25] Taxi move south
+[25] Taxi fetch Passenger A
+[26] Taxi move west
+[27] Taxi move west
+[27] Taxi fetch Passenger H
 [28] Taxi move north
-[29] Taxi move north
-[29] Taxi drop Passenger C
-[29] Taxi fetch Passenger G
-[31] Taxi move west
-[31] Taxi drop Passenger G
-[32] Taxi move west
-[32] Taxi fetch Passenger H
-[33] Taxi move north
+[29] Taxi move east
+[30] Taxi move east
+[33] Taxi move east
+[33] Taxi drop Passenger J
 [34] Taxi move east
-[34] Taxi drop Passenger I
-[36] Taxi move south
-[37] Taxi move south
+[34] Taxi drop Passenger H
+[34] Taxi fetch Passenger M
+[35] Taxi move east
+[35] Taxi drop Passenger L
+[37] Taxi move west
 [38] Taxi move south
-[38] Taxi drop Passenger H
-[39] Taxi move south
-[39] Taxi fetch Passenger F
-[40] Taxi move west
-[40] Taxi drop Passenger F
+[38] Taxi fetch Passenger D
+[39] Taxi move east
+[39] Taxi drop Passenger D
+[41] Taxi move north
 [42] Taxi move north
-[43] Taxi move east
-[44] Taxi move north
-[45] Taxi move east
-[46] Taxi move east
-[46] Taxi drop Passenger J
-[47] Taxi move east
-[47] Taxi drop Passenger B
+[43] Taxi move west
+[45] Taxi move north
+[46] Taxi move west
+[46] Taxi fetch Passenger Q
+[48] Taxi move west
+[49] Taxi move south
+[49] Taxi fetch Passenger R
+[51] Taxi move north
+[52] Taxi move north
+[52] Taxi drop Passenger M
+[52] Taxi drop Passenger R
+[53] Taxi move south
+[54] Taxi move south
+[55] Taxi move west
+[55] Taxi fetch Passenger O
+[56] Taxi move north
+[57] Taxi move north
+[58] Taxi move west
+[58] Taxi drop Passenger O
+[59] Taxi move north
+[60] Taxi move east
+[61] Taxi move east
+[61] Taxi fetch Passenger V
+[63] Taxi move east
+[63] Taxi fetch Passenger P
+[64] Taxi move west
+[65] Taxi move west
+[65] Taxi drop Passenger V
+[67] Taxi move east
+[68] Taxi move east
+[69] Taxi move east
+[70] Taxi move east
+[70] Taxi fetch Passenger N
+[71] Taxi move south
+[71] Taxi drop Passenger A
+[72] Taxi move north
+[72] Taxi fetch Passenger U
+[73] Taxi move south
+[74] Taxi move south
+[75] Taxi move west
+[76] Taxi move west
+[76] Taxi drop Passenger P
+[78] Taxi move west
+[78] Taxi drop Passenger U
+[79] Taxi move west
+[80] Taxi move south
+[80] Taxi fetch Passenger X
+[81] Taxi move south
+[81] Taxi fetch Passenger K
+[82] Taxi move north
+[83] Taxi move west
+[83] Taxi drop Passenger N
+[84] Taxi move south
+[85] Taxi move south
+[85] Taxi fetch Passenger I
+[87] Taxi move east
+[88] Taxi move east
+[89] Taxi move east
+[91] Taxi move east
+[91] Taxi drop Passenger Q
+[91] Taxi fetch Passenger S
+[92] Taxi move north
+[93] Taxi move west
+[94] Taxi move north
+[95] Taxi move north
+[95] Taxi drop Passenger X
+[96] Taxi move west
+[96] Taxi drop Passenger I
+[97] Taxi move north
+[97] Taxi drop Passenger K
+[98] Taxi move south
+[99] Taxi move south
+[100] Taxi move south
+[101] Taxi move south
+[101] Taxi fetch Passenger T
+[102] Taxi move west
+[102] Taxi drop Passenger T
+[103] Taxi move east
+[104] Taxi move east
+[105] Taxi move east
+[105] Taxi fetch Passenger W
+[106] Taxi move north
+[106] Taxi fetch Passenger Y
+[107] Taxi move west
+[108] Taxi move west
+[108] Taxi drop Passenger Y
+[109] Taxi move north
+[110] Taxi move north
+[111] Taxi move east
+[112] Taxi move east
+[113] Taxi move east
+[114] Taxi move north
+[115] Taxi move north
+[115] Taxi drop Passenger S
+[116] Taxi move west
+[116] Taxi drop Passenger W
